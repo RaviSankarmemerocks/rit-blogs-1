@@ -1,0 +1,67 @@
+from django.db import models
+from django.utils import timezone
+
+# Create your models here.
+
+    class Post(models.Model):
+        author = models.ForeignKey('auth.User',on_delete = models.CASCADE)
+        title = models.CharField(max_length = 200)
+        text = models.TextField()
+        created_date = models.dateTimeField(default = timezone.now)
+
+------------------------------------------------------------------------------------------------
+from django.contrib import admin        
+from .models import Post
+
+#register your models here
+        admin.site.register(Post)
+------------------------------------------------------------------------------------------------
+
+from django.conf.urls import url
+from django.contrib import admin
+	
+		urlpatterns = [
+			url(r'^admin/',admin.site.urls),
+			url(r'',include'blog.urls'))
+					   ]
+-----------------------------------------------------------------------------------------------					   
+from django.conf.urls import url	
+from . import views        
+	urlpatterns = [
+			url(r'^hello/$',views.hello, name = "")
+				  ]
+-----------------------------------------------------------------------------------------------
+<html>
+			<head>
+						<title>RIT - blog</title>
+			<head>
+			<body>
+						<h1>HEllo!</h1>
+			<body>			
+</html>						
+------------------------------------------------------------------------------------------------
+from django,shortcuts import render
+
+#Create your view here.
+
+def helo(request):
+	return render( request, "hello.html",{})
+-------------------------------------------------------------------------------------------------
+
+from django,shortcuts import render
+from .models import Post
+
+#create your views here
+#saying hello
+def hello(request):
+		return render( request, "hello.html", {})
+def posts(requests):
+		posts = Post.objects.order_by('-created_date')
+		return render( request, "post.html",{'posts'}:posts)
+--------------------------------------------------------------------------------------------------
+
+
+
+
+
+
