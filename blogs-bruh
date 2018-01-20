@@ -59,7 +59,9 @@ def posts(requests):
 		posts = Post.objects.order_by('-created_date')
 		return render( request, "post.html",{'posts'}:posts)
 --------------------------------------------------------------------------------------------------
-
+from django.conf.urls import url
+from . import views
+			......incomplete		
 
 
 
